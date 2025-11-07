@@ -31,8 +31,16 @@ for ($i = 0; $i < 5; $i++) {
     ];
 }
 
-// Tambahkan logika diskon belanja (contoh diskon 10%)
-$diskon = 0.1 * $grandtotal; // 10% dari total belanja
+// Logika diskon bertingkat
+if ($grandtotal < 50000) {
+    $persen_diskon = 5;
+} elseif ($grandtotal >= 50000 && $grandtotal <= 100000) {
+    $persen_diskon = 10;
+} else {
+    $persen_diskon = 15;
+}
+
+$diskon = ($persen_diskon / 100) * $grandtotal;
 $total_bayar = $grandtotal - $diskon;
 ?>
 <!DOCTYPE html>
@@ -197,7 +205,7 @@ $total_bayar = $grandtotal - $diskon;
         <span style="color:#0A0301FF;">Rp <?= number_format($grandtotal, 0, ',', '.') ?></span>
     </p>
 
-    <p class="total">Diskon (10%): 
+    <p class="total">Diskon (<?= $persen_diskon ?>%): 
         <span>- Rp <?= number_format($diskon, 0, ',', '.') ?></span>
     </p>
 
