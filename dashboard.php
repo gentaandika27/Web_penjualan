@@ -30,6 +30,10 @@ for ($i = 0; $i < 5; $i++) {
         "total" => $total
     ];
 }
+
+// Tambahkan logika total bayar (misal ada pajak atau diskon)
+$pajak = 0.1 * $grandtotal; // contoh pajak 10%
+$total_bayar = $grandtotal + $pajak;
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +47,6 @@ for ($i = 0; $i < 5; $i++) {
             padding: 0;
         }
 
-        /* ===== HEADER STYLE ===== */
         header {
             background-color: #F5F6FDFFF;
             color: Black;
@@ -53,16 +56,14 @@ for ($i = 0; $i < 5; $i++) {
             align-items: center;
         }
 
-        /* Bagian kiri: logo + teks */
         .logo-container {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        /* Logo PM dalam persegi biru */
         .logo {
-            background-color: #007bff; /* Biru solid */
+            background-color: #007bff;
             color: white;
             font-weight: bold;
             font-size: 22px;
@@ -71,7 +72,7 @@ for ($i = 0; $i < 5; $i++) {
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 6px; /* sedikit melengkung di sudut */
+            border-radius: 6px;
             box-shadow: 0 3px 6px rgba(0,0,0,0.3);
             border: 2px solid #0056b3;
             font-family: 'Arial Black', sans-serif;
@@ -83,7 +84,6 @@ for ($i = 0; $i < 5; $i++) {
             letter-spacing: 1px;
         }
 
-        /* Kanan: selamat datang + logout */
         .user-info {
             text-align: right;
             line-height: 1.5;
@@ -106,7 +106,6 @@ for ($i = 0; $i < 5; $i++) {
             text-decoration: underline;
         }
 
-        /* ===== BODY CONTENT ===== */
         .container {
             width: 80%;
             margin: 30px auto;
@@ -116,7 +115,7 @@ for ($i = 0; $i < 5; $i++) {
             box-shadow: 0 0 8px rgba(0,0,0,0.1);
         }
 
-        h2, h3 {
+        h3 {
             text-align: center;
         }
 
@@ -148,18 +147,23 @@ for ($i = 0; $i < 5; $i++) {
             font-size: 18px;
             margin-top: 15px;
         }
+
+        .bayar {
+            text-align: right;
+            font-weight: bold;
+            font-size: 20px;
+            color: #007bff;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <!-- Kiri: logo + nama toko -->
     <div class="logo-container">
         <div class="logo">PM</div>
         <div class="logo-text">--POLGAN MART--</div>
     </div>
 
-    <!-- Kanan: selamat datang + logout -->
     <div class="user-info">
         <p>Selamat Datang, <b>Admin</b></p>
         <a class="logout-btn" href="logout.php">Logout</a>
@@ -191,6 +195,14 @@ for ($i = 0; $i < 5; $i++) {
 
     <p class="total">Total Belanja: 
         <span style="color:#0A0301FF;">Rp <?= number_format($grandtotal, 0, ',', '.') ?></span>
+    </p>
+
+    <p class="total">Pajak (10%): 
+        <span>Rp <?= number_format($pajak, 0, ',', '.') ?></span>
+    </p>
+
+    <p class="bayar">Total Bayar: 
+        <span>Rp <?= number_format($total_bayar, 0, ',', '.') ?></span>
     </p>
 </div>
 
