@@ -31,9 +31,9 @@ for ($i = 0; $i < 5; $i++) {
     ];
 }
 
-// Tambahkan logika total bayar (misal ada pajak atau diskon)
-$pajak = 0.1 * $grandtotal; // contoh pajak 10%
-$total_bayar = $grandtotal + $pajak;
+// Tambahkan logika diskon belanja (contoh diskon 10%)
+$diskon = 0.1 * $grandtotal; // 10% dari total belanja
+$total_bayar = $grandtotal - $diskon;
 ?>
 <!DOCTYPE html>
 <html>
@@ -197,8 +197,8 @@ $total_bayar = $grandtotal + $pajak;
         <span style="color:#0A0301FF;">Rp <?= number_format($grandtotal, 0, ',', '.') ?></span>
     </p>
 
-    <p class="total">Pajak (10%): 
-        <span>Rp <?= number_format($pajak, 0, ',', '.') ?></span>
+    <p class="total">Diskon (10%): 
+        <span>- Rp <?= number_format($diskon, 0, ',', '.') ?></span>
     </p>
 
     <p class="bayar">Total Bayar: 
